@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>WeatherApp</title>
+</head>
+
+<body>
+    <div class="main-container flex space-center">
+        <div id="search" class="search flex space-center ">
+            <input id="city-input" type="text" placeholder=" Enter city name" spellcheck="false">
+            <button><img src="./img/100px-Search_Icon.png" alt=""></button>
+
+            <button class="live-location">Live Location</button>
+            <div class="live-notify">
+
+            </div>
+        </div>
+    </div>
+    <div class="main-container flex space-center">
+        <div class="right-side">
+            <h1 class="cityName">San Fransisco</h1>
+            <div class="date">
+                <p>Fri Jan 15 2021</p>
+            </div>
+            <div class="weather-icon"><img src="https://openweathermap.org/img/wn/10d.png" alt="weather-icon"></div>
+            <div class="temp-description">
+                <p> Few clouds</p>
+            </div>
+        </div>
+        <div class="right-side">
+            <!-- <h3>( ______ )</h3> -->
+            <!-- <h6 class="temp" >Temp: __C</h6> -->
+            <h6 class="wind">Wind: __ M/S</h6>
+            <h6 class="humidity">Humidity: __%</h6>
+        </div>
+        <div class="left-side">
+            <button class="temp">
+                <p> - <span>°C</span></p>
+            </button>
+            
+        </div>
+    </div>
+    <div class="forecast space-center flex-wrap">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
