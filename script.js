@@ -20,7 +20,7 @@ const createWeatherForecast = (weatherItem) => {
     </div>
     <div class="notification"></div>
     <div class="temp-value">
-        <p> ${ (Math.round(weatherItem.main.temp) - KELVIN)}° <span>C</span></p>
+        <p> ${(Math.round(weatherItem.main.temp) - KELVIN)}° <span>C</span></p>
     </div>
     <div class="temp-description">
         <p>${weatherItem.weather[0].description} </p>
@@ -60,9 +60,9 @@ async function getLiveWeather(lat, lon) {
     document.querySelector(".humidity").innerHTML = "Humidity:" + weatherInfo2.main.humidity + "%";
     document.querySelector(".wind").innerHTML = "Wind:" + weatherInfo2.wind.speed + "km/h";
     iconImg.innerHTML = `<img src="http://openweathermap.org/img/w/${weatherInfo2.weather[0].icon}.png"/>`
-    fiveDaysForecast.forEach((item)=> { 
-       searchBtn.insertAdjacentHTML("beforeend",createWeatherForecast(item)) ;
-});
+    fiveDaysForecast.forEach((item) => {
+        searchBtn.insertAdjacentHTML("beforeend", createWeatherForecast(item));
+    });
 }
 async function getWeather() {
     const cityName = searchBox.value.trim();
@@ -70,7 +70,7 @@ async function getWeather() {
     const apiUrl2 = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`;
     const response2 = await fetch(apiUrl2)
     var weatherInfo = await response2.json()
-    console.log(weatherInfo); 
+    console.log(weatherInfo);
     const uniqueForecastDays = [];
     const fiveDaysForecast = weatherInfo.list.filter(forecast => {
         const forecastDate = new Date(forecast.dt_txt).getDate();
@@ -86,13 +86,14 @@ async function getWeather() {
     var day = new Date(forecastDate * 1000);
     currentDate.innerHTML = day.toDateString();
     city_Name.innerHTML = weatherInfo.name;
+    weatherDesc.innerHTML = weatherInfo.weather[0].description;
     document.querySelector(".temp p").innerHTML = (Math.round(weatherInfo.main.temp) - KELVIN) + " °C";
     document.querySelector(".humidity").innerHTML = "Humidity:" + weatherInfo.main.humidity + "%";
     document.querySelector(".wind").innerHTML = "Wind:" + weatherInfo.wind.speed + "km/h";
     iconImg.innerHTML = `<img src="http://openweathermap.org/img/w/${weatherInfo.weather[0].icon}.png"/>`
-    fiveDaysForecast.forEach((item)=> {
-        searchBtn.insertAdjacentHTML("beforeend",createWeatherForecast(item)) ;
- });
+    fiveDaysForecast.forEach((item) => {
+        searchBtn.insertAdjacentHTML("beforeend", createWeatherForecast(item));
+    });
 }
 // async function getForecast(latitude, longitude) {
 //     const cityName = searchBox.value.trim();
