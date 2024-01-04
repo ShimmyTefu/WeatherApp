@@ -28,7 +28,7 @@ const createWeatherForecast = (weatherItem) => {
     <div class="location">
         <p>  </p>
     </div>
-    <div class="weather-icon"><img src="https://openweathermap.org/img/wn/10d.png" alt="weather-icon"> </div>
+    <div class="weather-icon"><img src="http://openweathermap.org/img/w/${weatherItem.weather[0].icon}.png"/> </div>
 </div>
     `
 }
@@ -67,8 +67,9 @@ async function getLiveWeather(lat, lon) {
 async function getWeather() {
     const cityName = searchBox.value.trim();
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
-    const response = await fetch(apiUrl)
-    var weatherInfo = await response.json()
+    const apiUrl2 = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`;
+    const response2 = await fetch(apiUrl2)
+    var weatherInfo = await response2.json()
     console.log(weatherInfo); 
     const uniqueForecastDays = [];
     const fiveDaysForecast = weatherInfo.list.filter(forecast => {
@@ -77,21 +78,20 @@ async function getWeather() {
             return uniqueForecastDays.push(forecastDate);
         }
     })
-    
-    if (!cityName === "") return alert("No City Name Found!");
+    // if (!cityName === "") return alert("No City Name Found!");
+    const response = await fetch(apiUrl)
+    var weatherInfo = await response.json()
+    console.log(weatherInfo);
     const forecastDate = weatherInfo.dt;
     var day = new Date(forecastDate * 1000);
-
-    // console.log(day.toUTCString()) 'Fri, 15 Jan 2021 04:32:29 GMT'
-    // console.log(day.toDateString())  'Fri Jan 15 2021'
     currentDate.innerHTML = day.toDateString();
     city_Name.innerHTML = weatherInfo.name;
     document.querySelector(".temp p").innerHTML = (Math.round(weatherInfo.main.temp) - KELVIN) + " °C";
     document.querySelector(".humidity").innerHTML = "Humidity:" + weatherInfo.main.humidity + "%";
     document.querySelector(".wind").innerHTML = "Wind:" + weatherInfo.wind.speed + "km/h";
     iconImg.innerHTML = `<img src="http://openweathermap.org/img/w/${weatherInfo.weather[0].icon}.png"/>`
-    fiveDaysForecast.forEach(()=> {
-        searchBtn.insertAdjacentHTML("beforeend",createWeatherForecast(weatherInfo)) ;
+    fiveDaysForecast.forEach((item)=> {
+        searchBtn.insertAdjacentHTML("beforeend",createWeatherForecast(item)) ;
  });
 }
 // async function getForecast(latitude, longitude) {
