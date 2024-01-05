@@ -1,7 +1,8 @@
 
-const searchBox = document.querySelector(".search input")
-const searchButton = document.querySelector(".search button")
-const searchBtn = document.querySelector(".forecast")
+const searchBox = document.querySelector(".search input");
+const searchButton = document.querySelector(".search button");
+const searchBtn = document.querySelector(".forecast");
+const searchEach = document.querySelector(".forecast-container")
 const liveButton = document.querySelector(".live-location");
 const currentDate = document.querySelector(".date");
 const weatherDesc = document.querySelector(".temp-description");
@@ -59,6 +60,7 @@ async function getLiveWeather(lat, lon) {
     document.querySelector(".humidity").innerHTML = "Humidity:" + weatherInfo2.main.humidity + "%";
     document.querySelector(".wind").innerHTML = "Wind:" + weatherInfo2.wind.speed + "km/h";
     iconImg.innerHTML = `<img src="http://openweathermap.org/img/w/${weatherInfo2.weather[0].icon}.png"/>`
+
     fiveDaysForecast.forEach((item) => {
         searchBtn.insertAdjacentHTML("beforeend", createWeatherForecast(item));
     });
@@ -67,7 +69,9 @@ async function getWeather() {
     const cityName = searchBox.value.trim();
     if (!cityName) {
         window.location.reload()
+        // searchBtn.innerHTML = ""
         return alert("No City Name Found!");
+
     }
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
     const apiUrl2 = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`;
@@ -97,14 +101,18 @@ async function getWeather() {
         searchBtn.insertAdjacentHTML("beforeend", createWeatherForecast(item));
     });
 }
-searchButton.addEventListener("click", getWeather)
+searchButton.addEventListener("click", ()=>{
+    searchBtn.innerHTML = "";
+    getWeather()
+})
 liveButton.addEventListener("click", () => {
+    searchBtn.innerHTML = "";
     let setPosition = (position) => {
         let latitude = position.coords.latitude;
         let longitude = position.coords.longitude;
         getLiveWeather(latitude, longitude);
     }
-    let showError = (error) => {alert("Browser Doesn't Support Geolocation"); }
+    let showError = () => {alert("Browser Doesn't Support Geolocation"); }
     // CHECK IF BROWSER SUPPORTS GEOLOCATION
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(setPosition, showError);
