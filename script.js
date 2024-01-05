@@ -5,7 +5,6 @@ const searchBtn = document.querySelector(".forecast")
 const liveButton = document.querySelector(".live-location");
 const currentDate = document.querySelector(".date");
 const weatherDesc = document.querySelector(".temp-description");
-const notificationElement = document.querySelector(".live-notify");
 const city_Name = document.querySelector(".cityName");
 const iconImg = document.querySelector(".weather-icon");
 const weatherInfo = {};
