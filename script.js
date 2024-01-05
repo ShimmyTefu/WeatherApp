@@ -65,7 +65,10 @@ async function getLiveWeather(lat, lon) {
 }
 async function getWeather() {
     const cityName = searchBox.value.trim();
-    if (!cityName === "") return alert("No City Name Found!");
+    if (!cityName) {
+        window.location.reload()
+        return alert("No City Name Found!");
+    }
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
     const apiUrl2 = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`;
     const response2 = await fetch(apiUrl2)
