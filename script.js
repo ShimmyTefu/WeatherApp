@@ -8,6 +8,7 @@ const currentDate = document.querySelector(".date");
 const weatherDesc = document.querySelector(".temp-description");
 const city_Name = document.querySelector(".cityName");
 const iconImg = document.querySelector(".weather-icon");
+const tempElement =document.querySelector(".temp p");
 const weatherInfo = {};
 const KELVIN = 273;
 
@@ -95,7 +96,7 @@ async function getWeather() {
     currentDate.innerHTML = day.toDateString();
     city_Name.innerHTML = weatherInfo.name;
     weatherDesc.innerHTML = weatherInfo.weather[0].description;
-    document.querySelector(".temp p").innerHTML = (Math.round(weatherInfo.main.temp) - KELVIN) + " °C";
+   tempElement.innerHTML = (Math.round(weatherInfo.main.temp) - KELVIN) + " °C";
     document.querySelector(".humidity").innerHTML = "Humidity:" + weatherInfo.main.humidity + "%";
     document.querySelector(".wind").innerHTML = "Wind:" + weatherInfo.wind.speed + "km/h";
     iconImg.innerHTML = `<img src="http://openweathermap.org/img/w/${weatherInfo.weather[0].icon}.png"/>`

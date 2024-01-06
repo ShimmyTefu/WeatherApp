@@ -1,29 +1,3 @@
-primitive Variables
-*string methods = helps manipulate a text:
-*array methods = helps manipulate a list of primitive Variables
-*DONT USE VAR 
-*JavaScript Promises and OBSERVABLES
-sync = EACH CODE WILL WAIT FOR ONE ANOTHER
-async = 
-await/async
-try catch 
-fetch
-if statements and Switch
-OPERATERS
-DATE methods
-Sorting and Search,filter on the TABLES
-Form Validation
 
-
-breadTravis
-maxMillun
-
-ESS6 JavaScript
-
-*List Target Needed to complete today(
-   DATE methods
-Sorting and Search,filter on the TABLES
-Form Validation 
-)
 
 

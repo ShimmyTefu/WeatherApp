@@ -1,3 +1,7 @@
+:root{
+    --white-search :#ebfffc;
+    --gray-bg:: #555;
+}
 body {
     margin: 0;
     padding: 0;
@@ -40,7 +44,7 @@ body {
 .main-container,
 .forecast {
 
-    color: #fff;
+    color:var(--white-search);
     margin: 14px auto 0;
     border-radius: 20px;
     padding: 24px 33px;
@@ -79,12 +83,11 @@ body {
 .search input {
     border: 0;
     outline: 0;
-    background: #ebfffc;
-    color: #555;
+    background:var(--white-search);
+    color: var(--gray-bg);
     padding: 10px 25px;
     height: 60px;
     border-radius: 30px;
-    /* flex: 1; */
     width: 50%;
     margin-right: 16px;
     font-size: 18px;
@@ -93,7 +96,7 @@ body {
 .search button {
     border: 0;
     outline: 0;
-    background: #ebfffc;
+    background: var(--white-search);
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -127,7 +130,7 @@ img {
 .temp-description p {
     font-size: 15px;
     font-weight: 400;
-    /* margin-top: -10px; */
+   
 }
 
 
