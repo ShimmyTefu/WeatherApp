@@ -18,6 +18,7 @@ body {
 
 .temp p {
     font-size: 50px;
+  
 }
 
 .forecast-container {
@@ -102,6 +103,9 @@ body {
 .temp {
     border-radius: 50px;
     border: none;
+}
+.temp button{
+    background: linear-gradient(135deg, #00feba, #5b548a);
 }
 
 

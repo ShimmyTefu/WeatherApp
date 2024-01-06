@@ -13,10 +13,12 @@ const KELVIN = 273;
 
 const apiKey = "2e15e1b77b2f79d3614c9be5d5c9b77b";
 const createWeatherForecast = (weatherItem) => {
+    // const day = ['Sunday', 'Monday', 'Tueseday', 'Wednesday', 'Thursday', 'Friday'];
+    // const curDay ;
     return `
     <div class="forecast-container">
     <div class="app-title">
-        <p>${weatherItem.dt_txt}</p>
+        <p>${weatherItem.dt_txt.slice(0, 11)}</p>
     </div>
     <div class="notification"></div>
     <div class="temp-value">
@@ -100,19 +102,13 @@ async function getWeather() {
     fiveDaysForecast.forEach((item) => {
         searchBtn.insertAdjacentHTML("beforeend", createWeatherForecast(item));
     });
-}
-searchButton.addEventListener("click", ()=>{
-    searchBtn.innerHTML = "";
-    getWeather()
-})
-liveButton.addEventListener("click", () => {
-    searchBtn.innerHTML = "";
+} const getCoordinates = () => {
     let setPosition = (position) => {
         let latitude = position.coords.latitude;
         let longitude = position.coords.longitude;
         getLiveWeather(latitude, longitude);
     }
-    let showError = () => {alert("Browser Doesn't Support Geolocation"); }
+    let showError = () => { alert("Browser Doesn't Support Geolocation"); }
     // CHECK IF BROWSER SUPPORTS GEOLOCATION
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(setPosition, showError);
@@ -120,4 +116,12 @@ liveButton.addEventListener("click", () => {
     } else {
         alert("Browser Doesn't Support Geolocation");
     }
+}
+searchButton.addEventListener("click", () => {
+    searchBtn.innerHTML = "";
+    getWeather()
+})
+liveButton.addEventListener("click", () => {
+    searchBtn.innerHTML = "";
+    getCoordinates();
 })
